@@ -12,8 +12,6 @@ a:hover{
 
 body {
 	background-color: black;
-	margin-top: 50px;
-	
 }
 
 ul{
@@ -48,6 +46,9 @@ blockquote{
 		max-height:500px;
 		max-width:500px;
 	}
+	body{
+		margin-top: 50px;
+	}
 }
 
 @media(max-height:850px){
@@ -56,5 +57,8 @@ blockquote{
 		margin-right: auto;
 		max-height:320px;
 		max-width:320px;
+	}
+	body{
+		margin-top: 25px;
 	}
 }
