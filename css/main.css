@@ -6,9 +6,14 @@ h5{
 	color: 
 }
 
-a:hover{
-	color: #55AAFF;
+a{
+	border-bottom: 1px dashed #DECDB9;
 }
+
+a:hover{
+	color: #FE728C /*#DECDB9*/;
+}
+
 
 body {
 	background-color: black;
