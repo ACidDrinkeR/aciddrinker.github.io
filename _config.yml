@@ -1,0 +1,5 @@
+name: Mitesh Shah
+markdown: kramdown
+permalink: /blog/:title
+paginate: 5
+paginate_path: "./page/:num"

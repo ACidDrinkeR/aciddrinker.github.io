@@ -1,0 +1,10 @@
+---
+layout: default
+title: Computable(verse);
+---
+	
+<ul class="posts myList_noStyle">
+	{% for post in site.posts %}
+	    <li><span class="myGray myBold myMono">{{ post.date | date_to_string }}</span> » <a href="{{ post.url }}" title="{{ post.title }}" class="myBlack">{{ post.title }}</a></li>
+	{% endfor %}
+</ul>

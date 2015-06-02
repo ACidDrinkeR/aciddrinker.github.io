@@ -1,48 +1,49 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="utf8">
-		<meta name="Description" CONTENT="I'm Mitesh Shah! I'm a computer scientist, developer, coder, software engineer. Personal website, web presence, online contact info">
-		<title> Mitesh Shah </title>
-		<meta name="keywords" CONTENT="Mitesh,shah,ninja,computer,developer,software,coder">
-		<meta name="author" CONTENT="Mitesh Shah">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css">
-		<link rel="stylesheet" type="text/css" href="./css/main.css">
-	</head>
-	<body>
-	<div class="container">
+---
+layout: default
+title: Computable(verse);
+---
+
+	<!-- This loops through the paginated posts -->
+	{% for post in paginator.posts %}
+	<div class="myFrame">
+		<h1 class="text-center"><a href="{{ post.url }}" class="myBlack">{{ post.title }}</a></h1>
+		<p class="author">
+			<span class="date myGray">{{ post.date | date_to_string }}</span>
+		</p>
+		<div class="content container">
+			{% if post.content contains '<!--more-->' %}
+  				{{ post.content | split:'<!--more-->' | first }}
+  				<div class="text-center">
+  				<a href="{{ post.url }}">Read more...</a>
+  				</div>
+			{% else %}
+  				{{ post.content }}
+			{% endif %}
+			<!--a href="{{ post.url }}#disqus_thread"></a-->
+		</div>
+	</div>
+		<!--hr class="myBorder" /-->
+	{% endfor %}
+
+	<!-- Pagination links -->
+	<div class="pagination container">
 		<div class="row">
-				<h1 class="text-center"> Hi, I'm Mitesh.</h1>
-				<h5 class="text-center" style="color:#FFFFFF">Minimalist. Inquisitive. Thinker. </h3>
-				<blockquote>
-					Peace comes from within. Do not seek it without.
-					<footer>
-					<cite title="The Enlightened one">
-						Buddha
-					</cite>
-					</footer>
-				</blockquote>
-			
-				<ul>
-					<li><a href="http://computableverse.com" title="computableverse.com">blog</a></li>
-					<li><a href="mailto:hi@mitesh.ninja" title="hi@mitesh.ninja">hi@mitesh.ninja</a></li>
-					<li><a href="https://github.com/MiteshNinja" title="github.com/MiteshNinja">github</a></li>
-					<li><a href="http://stackoverflow.com/users/4395646/mitesh-shah" title="http://stackoverflow.com/users/4395646/mitesh-shah">stackoverflow</a></li>
-					<li><a href="http://twitter.com/MiteshNinja" title="@MiteshNinja">twitter</a></li>
-					<li><a href="https://plus.google.com/112603001635455381216/posts" title="G+">google+</a></li>
-					<li><a href="http://steamcommunity.com/id/miteshninja" title="/ID/MiteshNinja">steam</a></li>
-				</ul>
-			<div class="col-md-8">
+			<div class="col-xs-4 text-left">
+			{% if paginator.previous_page %}
+				<a href="{{ paginator.previous_page_path }}" class="previous myGreen">Previous</a>
+			{% else %}
+				<span class="previous myGray">Previous</span>
+			{% endif %}
 			</div>
-			<div class="col-md-4">
-				
+			<div class="col-xs-4 text-center">
+				<span class="page_number myGray">Page: {{ paginator.page }} of {{ paginator.total_pages }}</span>
 			</div>
-			<div id="me">
-			<img class="img-responsive" src="http://i.imgur.com/vrYfozX.png" alt="MiteshNinja_face.png" title="This is my ninja_version.png" style="display:inline-block">
+			<div class="col-xs-4 text-right">
+			{% if paginator.next_page %}
+				<a href="{{ paginator.next_page_path }}" class="next myGreen">Next</a>
+			{% else %}
+				<span class="next myGray">Next</span>
+			{% endif %}
 			</div>
 		</div>
 	</div>
-	</body>
-</html>
-					
