@@ -12,4 +12,4 @@ Some of which include the following:
 * Twitter Bootstrap framework
 * Python (maybe)
 
-Feel free to contact me on twitter: [@MiteshMS](https://twitter.com/miteshms), or leave a comment.
+Feel free to contact me via email: [hi@Mmtesh.ninja](mailto:hi@Mmtesh.ninja), or leave a comment.
