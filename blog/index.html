@@ -2,9 +2,28 @@
 layout: default
 title: Computable(verse);
 ---
-	
-<ul class="posts myList_noStyle">
-	{% for post in site.posts %}
-	    <li><span class="myGray myBold myMono">{{ post.date | date_to_string }}</span> » <a href="{{ post.url }}" title="{{ post.title }}" class="myBlack">{{ post.title }}</a></li>
-	{% endfor %}
-</ul>
+
+<div style="font-size:0.8em">	
+	<ul class="posts myList_noStyle">
+		{% for post in site.posts %}
+		    {% capture post_year %}{{ post.date | date: '%Y' }}{% endcapture %}
+            {% if forloop.first %}
+                <h3 class="myGray myBold myMono">{{ post_year }}</h3><div class="myPage"><ul class="posts myList_noStyle">
+            {% endif %}
+			
+            {% if forloop.first == false %}
+                {% assign previous_index = forloop.index0 | minus: 1 %}
+                {% capture previous_post_year %}{{ site.posts[previous_index].date | date: '%Y' }}{% endcapture %}
+                {% if post_year != previous_post_year %}
+                    </div><h3 class="myGray myBold myMono">{{ post_year }}</h3><div class="myPage"><ul class="posts myList_noStyle">
+                {% endif %}
+            {% endif %}
+			
+            <li><span class="myGray myBold myMono">{{ post.date | date: '%d %b' }}</span> » <a href="{{ post.url }}" title="{{ post.title }}" class="myBlack">{{ post.title }}</a></li>
+
+            {% if forloop.last %}
+                </ul></div>
+            {% endif %}
+        {% endfor %}
+	</ul>
+</div>

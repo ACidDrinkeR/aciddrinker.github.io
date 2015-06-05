@@ -10,7 +10,7 @@ title: Computable(verse);
 		<p class="author">
 			<span class="date myGray">{{ post.date | date_to_string }}</span>
 		</p>
-		<div class="content container">
+		<div class="content">
 			{% if post.content contains '<!--more-->' %}
   				{{ post.content | split:'<!--more-->' | first }}
   				<div class="text-center">
