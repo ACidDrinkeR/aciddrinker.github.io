@@ -30,7 +30,7 @@ I was about to soak in the next few days. Instead I just decided to start coding
 I installed flask `sudo python3 install flask` and quickly got a basic web app
 running on localhost. 
 
-```python
+{% highlight python %}
 from flask import Flask
 app = Flask(__name__)
 
@@ -41,7 +41,7 @@ def sum(x,y):
 if __name__ == '__main__':
 	app.debug = True
 	app.run(host="127.0.0.1", port=8800)
-```
+{% endhighlight %}
 
 I could then go to [http://127.0.0.1:8800/2-3](http://127.0.0.1:8800/2-3) and
 I would get the following output: 
@@ -54,7 +54,7 @@ development so I started looking at forms. HTML tag `<form>` was a very quick
 and easy way to take input from the user and I quickly made a sample html file
 with input form for my python script.
 
-```html
+{% highlight html %}
 <!DOCTYPE html>
 <html>
 	<head>
@@ -71,13 +71,14 @@ with input form for my python script.
 		</div>
 	</body>
 </html>
-```
+{% endhighlight %}
 
 So now I could take input from the user. I somehow had to feed this input into my python script. I first tried doing it via pure javascript alone. A little bit of searching convinced me to instead use AJAX + jQuery. 
 
 I came up with the following solution:
 
-```javascript
+{% highlight javascript %}
+
 function testFunc (form) {
     var x = form.n1.value;
     var y = form.n2.value;
@@ -92,7 +93,8 @@ function testFunc (form) {
 			}
 	});
 }
-```
+
+{% endhighlight %}
 
 This would take the answer from my python script and insert it inside the div tag with class ".result", atleast it would in theory.
 
@@ -104,13 +106,15 @@ There was a particular error which took me quite some time to figure out:
 
 This is when I learned that my sample site was not authorised to transfer/relay data on another server/host. I fixed this by including a header to the respone in my python app.
 
-```python
+{% highlight python %}
+
 @app.route("/<int:x>-<int:y>")
 def sum(x, y):
 	resp = make_response(str(x + y))
 	resp.headers['Access-Control-Allow-Origin'] = '*'
 	return resp
-```
+
+{% endhighlight %}
 
 I included some more CORS code in jQuery/ajax function, but I don't quite understand it completely.
 
