@@ -14,6 +14,8 @@ It's also quite easy by using a framework like 'Flask' or 'Bottle' or, if you
 dare, 'Django'. But the problem was that they required my whole site to be 
 on the same domain.. but that is not what I had in mind.
 
+<!--more-->
+
 I currently host my personal site [http://mitesh.ninja](http://mitesh.ninja)
 via GitHub Pages, because it's free and natively supports Jekyll (my static
 blogging platform of choice). I wanted the input to my scripts taken from the
