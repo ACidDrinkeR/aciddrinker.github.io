@@ -1,5 +1,5 @@
 ---
-title: "Cross domain solution to execute Python scripts using JS, jQ, AJAX."
+title: "Cross domain execution of Python scripts using JS, jQ, AJAX."
 layout: post
 date: 2015-06-25
 ---
