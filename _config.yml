@@ -1,5 +1,6 @@
 name: Mitesh Shah
 markdown: redcarpet
+highlighter: pygments
 permalink: /blog/:title
 paginate: 5
 paginate_path: "./page/:num"

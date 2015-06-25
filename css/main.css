@@ -5,6 +5,10 @@ a{
     border-bottom: 1px dashed #999;
 }
 
+.gist-meta a{
+    border: 0px;
+}
+
 .myOpacity50{
     opacity: 0.5;
 }

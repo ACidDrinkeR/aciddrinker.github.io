@@ -1,5 +1,5 @@
 ---
-title: "Python Script execution cross-domain using javascript"
+title: "Cross domain solution to execute Python scripts using JS, jQ, AJAX."
 layout: post
 date: 2015-06-25
 ---
@@ -13,8 +13,6 @@ there was a way to run the python script on a server and obviously there is.
 It's also quite easy by using a framework like 'Flask' or 'Bottle' or, if you
 dare, 'Django'. But the problem was that they required my whole site to be 
 on the same domain.. but that is not what I had in mind.
-
-<!--more-->
 
 I currently host my personal site [http://mitesh.ninja](http://mitesh.ninja)
 via GitHub Pages, because it's free and natively supports Jekyll (my static
@@ -32,18 +30,7 @@ I was about to soak in the next few days. Instead I just decided to start coding
 I installed flask `sudo python3 install flask` and quickly got a basic web app
 running on localhost. 
 
-{% highlight python %}
-from flask import Flask
-app = Flask(__name__)
-
-@app.route("/<int:x>-<int:y>")
-def sum(x,y):
-	return ("Sum of x + y = " + str(x+y))
-
-if __name__ == '__main__':
-	app.debug = True
-	app.run(host="127.0.0.1", port=8800)
-{% endhighlight %}
+<script src="https://gist.github.com/MiteshNinja/e7dc40a099bad92fb752.js"></script>
 
 I could then go to [http://127.0.0.1:8800/2-3](http://127.0.0.1:8800/2-3) and
 I would get the following output: 
@@ -56,47 +43,14 @@ development so I started looking at forms. HTML tag `<form>` was a very quick
 and easy way to take input from the user and I quickly made a sample html file
 with input form for my python script.
 
-{% highlight html %}
-<!DOCTYPE html>
-<html>
-	<head>
-		<title> test_local </title>
-	</head>
-	<body>
-		<p> Sum of two numbers:  </p>
-		<form>
-			Number 1 : <input type="text" name="n1">
-			number 2 : <input type="text" name="n2">
-			<input type="button" value="Click" onClick="">
-		</form>
-		<div class="result">
-		</div>
-	</body>
-</html>
-{% endhighlight %}
+<script src="https://gist.github.com/MiteshNinja/660caf1fcf7c4ce284b4.js"></script>
 
 So now I could take input from the user. I somehow had to feed this input into my python script. I first tried doing it via pure javascript alone. A little bit of searching convinced me to instead use AJAX + jQuery. 
 
 I came up with the following solution:
 
-{% highlight javascript %}
-
-function testFunc (form) {
-    var x = form.n1.value;
-    var y = form.n2.value;
-
-	$.ajax({
-		type: 'GET',			
-		url: "http://127.0.0.1:5000/"+x+"-"+y,
-		contentType: 'text/plain',
-		success: function(response, textStat){
-			response = "The total sum is" + response;
-				$('.result').html(response);	
-			}
-	});
+<script src="https://gist.github.com/MiteshNinja/d1208766d38f4e565a2a.js"></script>
 }
-
-{% endhighlight %}
 
 This would take the answer from my python script and insert it inside the div tag with class ".result", atleast it would in theory.
 
@@ -108,19 +62,11 @@ There was a particular error which took me quite some time to figure out:
 
 This is when I learned that my sample site was not authorised to transfer/relay data on another server/host. I fixed this by including a header to the respone in my python app.
 
-{% highlight python %}
-
-@app.route("/<int:x>-<int:y>")
-def sum(x, y):
-	resp = make_response(str(x + y))
-	resp.headers['Access-Control-Allow-Origin'] = '*'
-	return resp
-
-{% endhighlight %}
+<script src="https://gist.github.com/MiteshNinja/68f158065f85cec84bde.js"></script>
 
 I included some more CORS code in jQuery/ajax function, but I don't quite understand it completely.
 
-The final result can be seen here: [http://mitesh.ninja/sample](http://mitesh.ninja/sample).
+The final result can be seen here: [http://mitesh.ninja/sample](http://mitesh.ninja/sample). 
 
 
 
