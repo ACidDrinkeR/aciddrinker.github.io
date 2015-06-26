@@ -1,66 +1,46 @@
 <!DOCTYPE html>
-	<html>
-		<head>
-			<script>
-				(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-					(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-					m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-				})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+<html>
+	<head>
+		<script>
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+				(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+				m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-				ga('create', 'UA-61533153-1', 'auto');
-				ga('send', 'pageview');
+			ga('create', 'UA-61533153-1', 'auto');
+			ga('send', 'pageview');
+		</script>
+		
+		<title>{{ page.title }}</title>
 
-			</script>
-			<title>{{ page.title }}</title>
-			<meta name="viewport" content="width=device-width, initial-scale=1">
-			<!-- link to main stylesheet -->
-			<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
-			<link rel="stylesheet" type="text/css" href="/css/bootstrap-theme.min.css">
-			<link rel="stylesheet" type="text/css" href="/css/main.css">
-			<link rel="stylesheet" type="text/css" href="/css/pygments.css">
-		</head>
-		<!-- myHeader_start -->
-			<!--div class="container" id="myHeader">
-				<div class="row">
-					<div class="col-lg-3 hidden-xs-block hidden-md-block"></div>
-					<div class="col-lg-6 noPadding">
-					<ul>
-						<li ><a href="/about">about </a></li>
-						<li ><a href="/blog"> archive</a></li>
-					</ul>
-					</div>
-					<div class="col-lg-3 hidden-xs-block hidden-md-block"></div>
-				</div>
-			</div-->
-			<div class="container mySiteSignature">
-				<div class="row">
-					<h5 style="margin-bottom:5px"><a href="/"><font class="">Computable</font>(<font class="">verse</font>)</a> {</h5>
-					<h6 style="margin-bottom:0px;margin-top:0px">/* <a href="/about">about</a> | <a href="/blog"> archive</a> */</h6>
-				</div>
-			</div>
-		<!-- myHeader_end -->
-			<body class="container">
-				{{ content }}
-			</body>
-		<!-- myFooter_start -->
-			<div class="container mySiteSignature">
-				<div class="row">
-					<h6>}</h6>
-				</div>
-			</div>
-			<!--div class="container" id="myFooter">
-				<div class="row">
-					<div class="col-lg-3 hidden-xs-block hidden-md-block"></div>
-					<div class="col-lg-6 noPadding">
-					<ul>
-						<li><a href="/author">author</a></li>
-					</ul>
-					</div>
-					<div class="col-lg-3 hidden-xs-block hidden-md-block"></div>
-				</div>
-			</div-->
-		<!-- myFooter_ends -->
-		<div class="container">
-			{% include comments.html %}
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" async>
+		<link rel="stylesheet" type="text/css" href="/css/main.css" async>
+		<link rel="stylesheet" type="text/css" href="/css/pygments.css" async>
+	</head>
+	
+	<!-- myHeader_start -->
+	<div class="container mySiteSignature">
+		<div class="row">
+			<h5 style="margin-bottom:5px"><a href="/"><font class="">Computable</font>(<font class="">verse</font>)</a> {</h5>
+			<h6 style="margin-bottom:0px;margin-top:0px">/* <a href="/about">about</a> | <a href="/blog"> archive</a> */</h6>
 		</div>
-	</html>
+	</div>
+	<!-- myHeader_end -->
+	
+	<body class="container">
+		{{ content }}
+	</body>
+
+	<!-- myFooter_start -->
+	<div class="container mySiteSignature">
+		<div class="row">
+			<h6>}</h6>
+		</div>
+	</div>
+	<!-- myFooter_end -->
+	<div class="container">
+		{% include comments.html %}
+	</div>
+</html>

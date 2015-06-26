@@ -33,11 +33,25 @@ I installed flask `sudo python3 install flask` and quickly got a basic web app
 running on localhost. 
 
 <script src="https://gist.github.com/MiteshNinja/e7dc40a099bad92fb752.js"></script>
+<!---
+from flask import Flask
+app = Flask(__name__)
+ 
+@app.route("/<int:x>-<int:y>")
+def sum(x,y):
+    return ("Sum of x + y = " + str(x+y))
+ 
+if __name__ == '__main__':
+    app.debug = True
+    app.run(host="127.0.0.1", port=8800)
+-->
 
 I could then go to [http://127.0.0.1:8800/2-3](http://127.0.0.1:8800/2-3) and
 I would get the following output: 
 
-<samp>Sum of x + y = 5</samp>
+<div class="myOutput">
+    <samp>Sum of x + y = 5</samp>
+</div>
 
 So I got my python script running as a webapp. I know had to find a way to get
 the input for this script from the user. Like I said, I had no clue about web
@@ -46,13 +60,46 @@ and easy way to take input from the user and I quickly made a sample html file
 with input form for my python script.
 
 <script src="https://gist.github.com/MiteshNinja/660caf1fcf7c4ce284b4.js"></script>
+<!--
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> test_local </title>
+    </head>
+    <body>
+        <p> Sum of two numbers:  </p>
+        <form>
+            Number 1 : <input type="text" name="n1">
+            number 2 : <input type="text" name="n2">
+            <input type="button" value="Click" onClick="">
+        </form>
+        <div class="result">
+        </div>
+    </body>
+</html>
+-->
 
 So now I could take input from the user. I somehow had to feed this input into my python script. I first tried doing it via pure javascript alone. A little bit of searching convinced me to instead use AJAX + jQuery. 
 
 I came up with the following solution:
 
 <script src="https://gist.github.com/MiteshNinja/d1208766d38f4e565a2a.js"></script>
+<!--
+function testFunc (form) {
+    var x = form.n1.value;
+    var y = form.n2.value;
+ 
+    $.ajax({
+        type: 'GET',            
+        url: "http://127.0.0.1:5000/"+x+"-"+y,
+        contentType: 'text/plain',
+        success: function(response, textStat){
+            response = "The total sum is" + response;
+                $('.result').html(response);    
+            }
+    });
 }
+-->
 
 This would take the answer from my python script and insert it inside the div tag with class ".result", atleast it would in theory.
 
@@ -60,11 +107,23 @@ Having absolutely no knowledge about JS, jQuery or AJAX. It was hard for me to d
 
 There was a particular error which took me quite some time to figure out: 
 
-<samp>XMLHttpRequest cannot load http://127.0.0.1:8800/2-3. No 'Access-Control-Allow-Origin' header is present on the requested resource. Origin 'null' is therefore not allowed access.</samp>
+<div class="myOutput">
+    <samp>
+        XMLHttpRequest cannot load http://127.0.0.1:8800/2-3. No 'Access-Control-Allow-Origin' header is 
+        present on the requested resource. Origin 'null' is therefore not allowed access.
+    </samp>
+</div>
 
 This is when I learned that my sample site was not authorised to transfer/relay data on another server/host. I fixed this by including a header to the respone in my python app.
 
 <script src="https://gist.github.com/MiteshNinja/68f158065f85cec84bde.js"></script>
+<!--
+@app.route("/<int:x>-<int:y>")
+def sum(x, y):
+	resp = make_response(str(x + y))
+	resp.headers['Access-Control-Allow-Origin'] = '*'
+	return resp
+-->
 
 I included some more CORS code in jQuery/ajax function, but I don't quite understand it completely.
 

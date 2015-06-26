@@ -9,6 +9,13 @@ a{
     border: 0px;
 }
 
+.myOutput{
+    border: 1px dotted black;
+    padding: 5px;
+    line-height: 0.9em;
+    font-size: 0.9em;
+}
+
 .myOpacity50{
     opacity: 0.5;
 }
@@ -26,17 +33,6 @@ a{
 
 ul{
     -webkit-padding-start:20px;
-}
-
-.myTerminalEmulator{
-        color: gray;
-        font-weight: normal;
-}
-.myTerminal{
-    background-color: black;
-    color: white;
-    border-color: black;
-    outline-color: black;
 }
 
 .myList_noStyle {
